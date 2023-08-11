@@ -66,6 +66,8 @@ class DivItem:
                 self.print_all()
             elif choice.lower() == 'q':
                 break
+            else:
+                print(" \n Choose a valid option and press Enter. \n")
 
     def print_all(self):
         print('\n')
