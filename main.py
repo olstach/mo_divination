@@ -38,18 +38,19 @@ def check():
 def menu():
     print("\n MO DIVINATION"+ '\n')
     time.sleep(2)
-    option = int(input("\n [1] Ask a question \n [2] Check results \n [3] Quit \n "))
+    option = input("\n [1] Ask a question \n [2] Check results \n [3] Quit \n ")
 
-    if option == 1:
+    if option == '1':
         input("Focus on the question and press Enter... ")
         roll()
         time.sleep(2)
-    elif option == 2:
+    elif option == '2':
         check()
-    elif option == 3:
+    elif option == '3' or option.lower() == 'q':
         print("\n Good bye! \n")
         sys.exit()
-
+    else:
+        print(" \n Choose a valid option and press Enter. \n")
 
 while True:
     menu()
@@ -57,6 +58,4 @@ while True:
 if __name__ == "__main__":
     app()
 
-#TODO: try-except blocks for invalid keyboard input in menu & submenu
 #TODO: explore Typer options for running from CLI
-#TODO: how to package this into a cli app that I could share?
