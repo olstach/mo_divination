@@ -1,11 +1,26 @@
 import time
 import funcs, styles
-
 from rich.console import Console
-from rich.style import Style
 from rich.styled import Styled
 
+
 console = Console()
+
+text_mapping = {
+    'family': '[1] Family, property and life' + '\n',
+    'aims': '[2] Intentions and aims' + '\n',
+    'friends': '[3] Friends and wealth' + '\n',
+    'enemies': '[4] Enemies' + '\n',
+    'guests': '[5] Guests' + '\n',
+    'illness': '[6] Illness' + '\n',
+    'evil_spirits': '[7] Evil spirits' + '\n',
+    'practice': '[8] Spiritual practice' + '\n',
+    'lost': '[9] Lost article' + '\n',
+    'will_they': '[10] Will they come, and will the task be accomplished' + '\n',
+    'all_matters': '[0] All remaining matters' + '\n',
+    'print_all': 'Press [A] to print all' + '\n',
+    'quit': 'Press [Q] to quit' + '\n'
+}
 
 
 class DivItem:
@@ -25,6 +40,14 @@ class DivItem:
         self.will_they = ""
         self.all_matters = ""
 
+    def subsection(self, attr):
+
+        header_text = text_mapping.get(f'{attr}', '')
+        content_text = getattr(self, f'{attr}', '')
+
+        console.print(Styled(header_text, style=f"{funcs.primary_color[0]}"), justify="center")
+        console.print(Styled('\n' + content_text + '\n \n', style=styles.regular), justify="center")
+
     def submenu(self):
         console.print('\n' + self.title + '\n', style=f'{funcs.primary_color[0]}', justify="center")
         time.sleep(1)
@@ -34,45 +57,34 @@ class DivItem:
 
         while True:
             console.print(Styled(
-                '[1] Family, property and life' + '\n' +
-                '[2] Intentions and aims' + '\n' +
-                '[3] Friends and wealth' + '\n' +
-                '[4] Enemies' + '\n' +
-                '[5] Guests' + '\n' +
-                '[6] Illness' + '\n' +
-                '[7] Evil spirits' + '\n' +
-                '[8] Spiritual practice' + '\n' +
-                '[9] Lost article' + '\n' +
-                '[10] Will they come, and will the task be accomplished' + '\n' +
-                '[0] All remaining matters' + '\n' +
-                'Press [A] to print all' + '\n' +
-                'Press [Q] to quit' + '\n'
-            , styles.regular))
+                text_mapping['family'] + text_mapping['aims'] + text_mapping['friends'] + text_mapping['enemies'] +
+                text_mapping['guests'] + text_mapping['illness'] + text_mapping['evil_spirits'] + text_mapping[
+                    'practice'] + text_mapping['lost'] + text_mapping['will_they'] + text_mapping['all_matters'],
+                styles.regular))
 
             choice = input()
-
             if choice == '1':
-                console.print(Styled('\n' +self.family + '\n \n', styles.regular), justify="center")
+                self.subsection('family')
             elif choice == '2':
-                console.print(Styled('\n' +self.aims + '\n \n', styles.regular), justify="center")
+                self.subsection('aims')
             elif choice == '3':
-                console.print(Styled('\n' +self.friends + '\n \n', styles.regular), justify="center")
+                self.subsection('friends')
             elif choice == '4':
-                console.print(Styled('\n' +self.enemies + '\n \n', styles.regular), justify="center")
+                self.subsection('enemies')
             elif choice == '5':
-                console.print(Styled('\n' +self.guests + '\n \n', styles.regular), justify="center")
+                self.subsection('guests')
             elif choice == '6':
-                console.print(Styled('\n' +self.illness + '\n \n', styles.regular), justify="center")
+                self.subsection('illness')
             elif choice == '7':
-                console.print(Styled('\n' +self.evil_spirits + '\n \n', styles.regular), justify="center")
+                self.subsection('evil_spirits')
             elif choice == '8':
-                console.print(Styled('\n' +self.practice + '\n \n', styles.regular), justify="center")
+                self.subsection('practice')
             elif choice == '9':
-                console.print(Styled('\n' +self.lost + '\n \n', styles.regular), justify="center")
+                self.subsection('lost')
             elif choice == '10':
-                console.print(Styled('\n' +self.will_they + '\n \n', styles.regular), justify="center")
+                self.subsection('will_they')
             elif choice == '0':
-                console.print(Styled('\n' +self.all_matters + '\n \n', styles.regular), justify="center")
+                self.subsection('all_matters')
             elif choice.lower() == 'a':
                 self.print_all()
             elif choice.lower() == 'q':
@@ -81,26 +93,19 @@ class DivItem:
                 print(" \n Choose a valid option and press Enter. \n")
 
     def print_all(self):
-        print('\n')
-        print(self.title + '\n')
-        print(self.header + '\n')
-        print(self.sign + '\n')
-        print('FAMILY, PROPERTY AND LIFE' + '\n' + self.family + '\n')
-        print('INTENTIONS AND AIMS' + '\n' + self.aims + '\n')
-        print('FRIENDS AND WEALTH' + '\n' + self.friends + '\n')
-        print('ENEMIES' + '\n' + self.enemies + '\n')
-        print('GUESTS' + '\n' + self.guests + '\n')
-        print('ILLNESS' + '\n' + self.illness + '\n')
-        print('EVIL SPIRITS' + '\n' + self.evil_spirits + '\n')
-        print('SPIRITUAL PRACTICE' + '\n' + self.practice + '\n')
-        print('LOST ARTICLE' + '\n' + self.lost + '\n')
-        print('WILL THEY COME, AND WILL THE TASK BE ACCOMPLISHED' + '\n' + self.will_they + '\n')
-        print('ALL REMAINING MATTERS' + '\n' + self.all_matters + '\n')
 
-
-
-
-
+        self.subsection('family')
+        self.subsection('aims')
+        self.subsection('friends')
+        self.subsection('enemies')
+        self.subsection('guests')
+        self.subsection('illness')
+        self.subsection('evil_spirits')
+        self.subsection('evil_spirits')
+        self.subsection('practice')
+        self.subsection('lost')
+        self.subsection('will_they')
+        self.subsection('all_matters')
 
 
 AH_AH = DivItem()
@@ -470,7 +475,7 @@ TSA_TSA.evil_spirits = 'There are none that are bothering you.'
 TSA_TSA.practice = 'There will be great success in fulfilling your aims. Also, you will obtain great renown.'
 TSA_TSA.lost = 'You will most probably find it quickly by searching in a northeasterly direction from where it was lost.'
 TSA_TSA.will_they = 'It is predicted that they will come.'
-TSA_TSA.all_matters = 'They are successful and stable. However, you will face difficulties with activities involving earth and water. You should rely upon making offerings, reciting praises and performing rituals against curses. Rely upon the meditation practice of wrathful Niladanda, the goddess Tsanti, and also upon the Dharma Protectors such as Chittapati and Ngen Nerna, as well as activity deities. Such activities as traveling, flying in the sky, walking with fast feet, and so on, will meet with success. Success will also be experienced in any activity of expelling, such as expelling ghosts from a certain locale. It is good to make various types of offerings, such as tea, scarves, and the like. \n This prediction is known as "quick settlement and fame."'
+TSA_TSA.all_matters = 'They are successful and stable. However, you will face difficulties with activities involving earth and water. You should rely upon making offerings, reciting praises and performing rituals against curses. Rely upon the meditation practice of wrathful Niladanda, the goddess Tsanti, and also upon the Dharma Protectors such as Chittapati and Ngen Nerna, as well as activity deities. Such activities as traveling, flying in the sky, walking with fast feet, and so on, will meet with success. Success will also be experienced in any activity of expelling, such as expelling ghosts from a certain locale. It is good to make various types of offerings, such as tea, scarves, and the like. \n This prediction is known as " quick settlement and fame."'
 
 
 TSA_NA = DivItem()
@@ -594,10 +599,10 @@ NA_NA.all_matters = 'If they are not delayed, they will tum out well. It will be
 NA_DHIH = DivItem()
 NA_DHIH.title = 'The Treasury of Jewels'
 NA_DHIH.header = 'If NA DHI the gatekeeper of the west appears, then there is perfect prosperity, similar to the opening of a treasury of jewels.'
-NA_DHIH.sign = 'The sign of this divination is known as " opening the door of the treasury of jewels in the east." It is also known as "obtaining butter from milk and gems from the ocean."'
+NA_DHIH.sign = 'The sign of this divination is known as "opening the door of the treasury of jewels in the east." It is also known as "obtaining butter from milk and gems from the ocean."'
 NA_DHIH.family = 'As there will be no changes, prospects are good.'
 NA_DHIH.aims = 'They are excellent and firm, and so the outlook for the future is positive.'
-NA_DHIH.friends = 'Whatever you wish will b e fulfilled.'
+NA_DHIH.friends = 'Whatever you wish will be fulfilled.'
 NA_DHIH.enemies = 'None will arise.'
 NA_DHIH.guests = 'They will have a successful and comfortable journey.'
 NA_DHIH.illness = 'It will gradually clear up.'
