@@ -1,9 +1,6 @@
-import sys, random, time
+import random, time
 import DivItems, styles
 
-from rich import print
-from rich.style import Style
-from rich.styled import Styled
 from rich.console import Console
 
 
