@@ -1,4 +1,12 @@
 import time
+import funcs, styles
+
+from rich.console import Console
+from rich.style import Style
+from rich.styled import Styled
+
+console = Console()
+
 
 class DivItem:
     def __init__(self):
@@ -18,13 +26,14 @@ class DivItem:
         self.all_matters = ""
 
     def submenu(self):
-        print(self.title + '\n')
+        console.print('\n' + self.title + '\n', style=f'{funcs.primary_color[0]}', justify="center")
         time.sleep(1)
-        print(self.header + '\n')
-        print(self.sign + '\n')
+        console.print(Styled('\n' + self.header + '\n', styles.header), justify="center")
+        console.print(Styled('\n' + self.sign + '\n', styles.regular), justify="center")
+
 
         while True:
-            choice = input(
+            console.print(Styled(
                 '[1] Family, property and life' + '\n' +
                 '[2] Intentions and aims' + '\n' +
                 '[3] Friends and wealth' + '\n' +
@@ -38,30 +47,32 @@ class DivItem:
                 '[0] All remaining matters' + '\n' +
                 'Press [A] to print all' + '\n' +
                 'Press [Q] to quit' + '\n'
-            )
+            , styles.regular))
+
+            choice = input()
 
             if choice == '1':
-                print('\n' +self.family + '\n \n')
+                console.print(Styled('\n' +self.family + '\n \n', styles.regular), justify="center")
             elif choice == '2':
-                print('\n' +self.aims + '\n \n')
+                console.print(Styled('\n' +self.aims + '\n \n', styles.regular), justify="center")
             elif choice == '3':
-                print('\n' +self.friends + '\n \n')
+                console.print(Styled('\n' +self.friends + '\n \n', styles.regular), justify="center")
             elif choice == '4':
-                print('\n' +self.enemies + '\n \n')
+                console.print(Styled('\n' +self.enemies + '\n \n', styles.regular), justify="center")
             elif choice == '5':
-                print('\n' +self.guests + '\n \n')
+                console.print(Styled('\n' +self.guests + '\n \n', styles.regular), justify="center")
             elif choice == '6':
-                print('\n' +self.illness + '\n \n')
+                console.print(Styled('\n' +self.illness + '\n \n', styles.regular), justify="center")
             elif choice == '7':
-                print('\n' +self.evil_spirits + '\n \n')
+                console.print(Styled('\n' +self.evil_spirits + '\n \n', styles.regular), justify="center")
             elif choice == '8':
-                print('\n' +self.practice + '\n \n')
+                console.print(Styled('\n' +self.practice + '\n \n', styles.regular), justify="center")
             elif choice == '9':
-                print('\n' +self.lost + '\n \n')
+                console.print(Styled('\n' +self.lost + '\n \n', styles.regular), justify="center")
             elif choice == '10':
-                print('\n' +self.will_they + '\n \n')
+                console.print(Styled('\n' +self.will_they + '\n \n', styles.regular), justify="center")
             elif choice == '0':
-                print('\n' +self.all_matters + '\n \n')
+                console.print(Styled('\n' +self.all_matters + '\n \n', styles.regular), justify="center")
             elif choice.lower() == 'a':
                 self.print_all()
             elif choice.lower() == 'q':
@@ -85,6 +96,11 @@ class DivItem:
         print('LOST ARTICLE' + '\n' + self.lost + '\n')
         print('WILL THEY COME, AND WILL THE TASK BE ACCOMPLISHED' + '\n' + self.will_they + '\n')
         print('ALL REMAINING MATTERS' + '\n' + self.all_matters + '\n')
+
+
+
+
+
 
 
 AH_AH = DivItem()
@@ -593,7 +609,7 @@ NA_DHIH.all_matters = 'They are successful. It is especially advisable to seek t
 
 DHIH_AH = DivItem()
 DHIH_AH.title = 'Manjushri Appears'
-DHIH_AH.header = 'If DRI AH - the brave Manjushri - appears, then whatever is wished for will be fulfilled, like a gem falling into one\'s hand.'
+DHIH_AH.header = 'If DHI AH - the brave Manjushri - appears, then whatever is wished for will be fulfilled, like a gem falling into one\'s hand.'
 DHIH_AH.sign = 'The sign of this divination is known from the speech of the Transcendental Being of Mind\'s Great Bliss who said, "The agility of the great primordial wisdom of pure awareness increases without regard to directions."'
 DHIH_AH.family = 'Since they are firm and without obstructions, conditions are good'
 DHIH_AH.aims = 'Have no doubts concerning the situation, since an authority that i s not involved with deception is present here. It is advisable to listen to, study and contemplate the general Buddhist teachings, especially those of the mantra teachings.'
