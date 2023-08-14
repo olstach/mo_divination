@@ -1,8 +1,6 @@
 import sys, random, time
 import DivItems, funcs, styles
 
-from rich import print
-from rich.style import Style
 from rich.styled import Styled
 from rich.console import Console
 
@@ -12,7 +10,7 @@ def menu():
 
     title_txt = Styled("\n\n   MO DIVINATION \n\n\n", styles.title)
     console.print(title_txt, justify="center")
-    time.sleep(1.5)
+    time.sleep(1)
 
     options_txt = Styled("[1] Ask a question \n [2] Browse results \n [3] Quit", styles.regular)
     console.print(options_txt, justify="center")
